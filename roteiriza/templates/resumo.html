@@ -4,6 +4,18 @@
     <title>Rotas - Roteiriza</title>
     <meta charset="UTF-8">
     <link rel="icon" sizes="192x192" href="/static/img/icone.ico">
+    <script>
+        function goBackAndRefresh() {
+            // Verifica se há uma página anterior para retornar
+            if (document.referrer) {
+                // Redireciona para a URL da página anterior
+                window.location.href = document.referrer;
+            } else {
+                // Se não houver página anterior, redireciona para uma URL padrão (opcional)
+                window.location.href = "/";
+            }
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -86,7 +98,7 @@
     </style>
 </head>
     <body>
-        <div class="screen-only"><button class="print-link" onclick="window.history.back()">Voltar</button> | <button class="print-link" onclick="window.print()">Imprimir</button></div>
+        <div class="screen-only"><button class="print-link" onclick="goBackAndRefresh()">Voltar</button> | <button class="print-link" onclick="window.print()">Imprimir</button></div>
         {% for veiculo_id, (km_veiculo, paradas) in dados.items() %}
         {% set inf_veic = info_veiculos[veiculo_id] %}
         <div class="page">
