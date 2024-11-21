@@ -1,0 +1,60 @@
+<div style="margin: 8px 12px;">
+    <div style="font-size: larger; margin-bottom: 8px"><b>{{ titulo }}</b></div>
+    <a type="button" data-toggle="modal" data-target="#modal-adicionar" style="color: rgb(149, 190, 16);" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'"><i class="fa-solid fa-plus"></i> Incluir </a>
+    <a type="button" data-toggle="modal" data-target="#modal-excluir-tudo" style="color: rgb(202, 40, 44); margin-left: 15px;" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'"><i class="fa-regular fa-trash-can"></i> Excluir tudo</a>
+</div>
+<div style="margin: 6px 12px">
+    <table id="data" class="table table-striped">
+        <thead class="table" style="background-color: #201D60; color: white">
+            <tr>
+                <th scope="col">Ações</th>
+                <th scope="col">Id</th>
+                <th scope="col" id="col-data">Data de entrada</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Tamanho</th>
+                <th scope="col">Endereço</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entrega in entregas %}
+                <tr>
+                    <td>
+                        <a type="button" style="margin-left: 4px; color: #95BE10; opacity: 95%" onmouseover="this.style.color='white'" onmouseout="this.style.color='#95BE10'" data-toggle="modal" data-target="#modal-mapa{{ entrega.id }}"><i class="fa-solid fa-location-dot"></i></a>
+                        <a type="button" style="margin-left: 4px; color: #E89C1E; opacity: 95%" onmouseover="this.style.color='white'" onmouseout="this.style.color='#E89C1E'" data-toggle="modal" data-target="#modal-editar{{ entrega.id }}"><i class="fa-regular fa-pen-to-square"></i></a>
+                        <a type="button" style="margin-left: 4px; color: #CA282C; opacity: 95%" onmouseover="this.style.color='white'" onmouseout="this.style.color='#CA282C'" data-toggle="modal" data-target="#modal-excluir{{ entrega.id }}"><i class="fa-regular fa-trash-can"></i></a>
+                    </td>
+                    <th scope="row">{{ entrega.id }}</th>
+                    <td>{{ entrega.data_recebido.strftime('%Y/%m/%d') }}</td>
+                    <td>{{ entrega.descricao }}</td>
+                    <td>{{ entrega.telefone }}</td>
+                    <td>{{ 'Grande' if entrega.tamanho_grande else 'Pequeno' }}</td>
+                    <td>{{ entrega.endereco }}</td>
+                </tr>
+                <!-- Modal mapa -->
+                {% include 'modals/modal-mapa.html' %}
+                <!-- Modal editar -->
+                {% include 'modals/modal-editar.html' %}
+                <!-- Modal excluir -->
+                {% include 'modals/modal-excluir.html' %}
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Ações</th>
+                <th>Id</th>
+                <th>Data de chegada</th>
+                <th>Descrição</th>
+                <th>Telefone</th>
+                <th>Tamanho</th>
+                <th>Endereço</th>
+            </tr>
+        </tfoot>
+    </table>
+    <!-- Modal adicionar -->
+    {% include 'modals/modal-adicionar.html' %}
+    <!-- Modal planilha -->
+    {% include 'modals/modal-planilha.html' %}
+    <!-- Modal excluir tudo -->
+    {% include 'modals/modal-excluir-tudo.html' %}
+</div>

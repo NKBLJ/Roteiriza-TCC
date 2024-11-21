@@ -1,0 +1,16 @@
+<div class="navsemec">
+    <a type="button" href="{{ url_for('home') }}"><i style="font-family: 'Tahoma', 'Font Awesome 6 Free';" class="fa-solid fa-house" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'"></i></a>
+    <a type="button" href="{{ url_for('objetos') }}" style="margin-left: 15px" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'"><i class="fa-solid fa-box"></i> Objetos </a>
+    <a type="button" href="{{ url_for('veiculos') }}" style="margin-left: 15px" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'"><i class="fa-solid fa-truck"></i> Veículos </a>
+    <a type="button" style="margin-left: 15px; opacity: {% if arquivo %}100%{% else %}50%{% endif %}" {% if arquivo %}href="{{ url_for('resumo') }}" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'" {% endif %}>
+        <i class="fa-solid fa-route"></i> Rotas
+    </a>
+    <a type="button" data-toggle="modal" data-target="#modal-config" style="margin-left: 15px" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'"><i class="fa-solid fa-gear"></i> Configurações </a>
+    <form method="POST" action="" style="display: contents">
+        <button type="submit" data-toggle="modal" data-target="#modal-loading" name="botao-att-rotas" style="color: white; border: none; background: none; position: absolute; right: min(35px, 4%); padding: 5px;" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'"><i style="padding: 2px; border-radius: 5px; background-color: #6610f2" class="fa-solid fa-arrows-rotate"></i> Gerar Rotas </button>
+    </form>
+    <a type="button" href="{{ url_for('sair') }}" style="margin-left: 15px; color: rgb(202, 40, 44)" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair </a>
+</div>
+<!-- Modal configurações -->
+{% include 'modals/modal-config.html' %}
+{% include 'modals/modal-loading.html' %}

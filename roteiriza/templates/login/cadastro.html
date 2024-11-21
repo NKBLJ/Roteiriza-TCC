@@ -1,0 +1,70 @@
+{% extends '/login/base_login.html' %}
+
+{% block head %}
+    <title>Cadastro - The Express</title>
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid" style="font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif; max-width: 500px; min-height: 200px; padding-bottom: 2%; margin-top: 20vh; color: #02153D;background-color: white; border-radius: 20px">
+        <form method="POST" action="" style="display: grid; justify-items: center;">
+            {{ form_cadastro.csrf_token }}
+            <legend style="text-align: center; font-weight: bold; margin-top: 5%">Cadastro - Roteiriza</legend>
+            <fieldset>
+                <div class="form-group">
+                    {{ form_cadastro.email_acesso.label(class="form-control-label") }}
+                    {% if form_cadastro.email_acesso.errors and 'botao_submit_criar' in request.form %}
+                        {{ form_cadastro.email_acesso(class="form-control is-invalid", style="height:17pt;font-size=17pt;border-radius:12px;width:min(320px,97vw);border-color: #dc3545; padding: 0 0.75rem;") }}
+                    <div class="invalid-feedback">
+                        {% for erro in form_cadastro.email_acesso.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                        {{ form_cadastro.email_acesso(class="form-control", style="height:17pt;font-size=17pt;border-radius:12px;width:min(320px,97vw);border-color: #055ca7; padding: 0 0.75rem;") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form_cadastro.senha_acesso.label(class="form-control-label") }}
+                    {% if form_cadastro.senha_acesso.errors and 'botao_submit_criar' in request.form %}
+                        {{ form_cadastro.senha_acesso(class="form-control is-invalid", style="height:17pt;font-size=17pt;border-radius:12px;width:min(320px,97vw);border-color: #dc3545; padding: 0 0.75rem;") }}
+                    <div class="invalid-feedback">
+                        {% for erro in form_cadastro.senha_acesso.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                        {{ form_cadastro.senha_acesso(class="form-control", style="height:17pt;font-size=17pt;border-radius:12px;width:min(320px,97vw);border-color: #055ca7; padding: 0 0.75rem;") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form_cadastro.confirmacao_senha.label(class="form-control-label") }}
+                    {% if form_cadastro.confirmacao_senha.errors and 'botao_submit_criar' in request.form %}
+                        {{ form_cadastro.confirmacao_senha(class="form-control is-invalid", style="height:17pt;font-size=17pt;border-radius:12px;width:min(320px,97vw);border-color: #dc3545; padding: 0 0.75rem;") }}
+                    <div class="invalid-feedback">
+                        {% for erro in form_cadastro.confirmacao_senha.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                        {{ form_cadastro.confirmacao_senha(class="form-control", style="height:17pt;font-size=17pt;border-radius:12px;width:min(320px,97vw);border-color: #055ca7; padding: 0 0.75rem;") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form_cadastro.token.label(class="form-control-label") }}
+                    {% if form_cadastro.token.errors and 'botao_submit_criar' in request.form %}
+                        {{ form_cadastro.token(class="form-control is-invalid", style="height:17pt;font-size=17pt;border-radius:12px;width:min(320px,97vw);border-color: #dc3545; padding: 0 0.75rem;") }}
+                    <div class="invalid-feedback">
+                        {% for erro in form_cadastro.token.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                        {{ form_cadastro.token(class="form-control", style="height:17pt;font-size=17pt;border-radius:12px;width:min(320px,97vw);border-color: #055ca7; padding: 0 0.75rem;") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            {{ form_cadastro.botao_submit_criar(style="margin-top: 10px ; color: #eee; font-size: 12pt; border-radius: 10px; font-family: Verdana; background-color: blue; background-attachment: fixed;") }}
+        </form><br>
+        <a href="{{ url_for('login') }}" style="padding-left: 16%; text-decoration: underline; color: blue; cursor: revert">Já possui cadastro?</a>
+    </div>
+{% endblock %}

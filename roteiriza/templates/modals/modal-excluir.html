@@ -1,0 +1,29 @@
+<div class="modal fade" id="modal-excluir{{ entrega.id }}" tabindex="-1" role="dialog" aria-labelledby="ModalExcluir" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalExcluir">Tem certeza que deseja excluir?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" action="">
+                {{ form_excluir.csrf_token }}
+                <fieldset>
+                    {{ form_excluir.id_excluir(value=entrega.id) }}
+                    <div class="modal-body">
+                        Item: {{ entrega.id }}
+                        {% if entrega.descricao  %}
+                            <br>
+                            Apelido: {{ entrega.descricao }}
+                        {% endif %}
+                    </div>
+                </fieldset>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Desistir</button>
+                    {{ form_excluir.botao_excluir(class="btn btn-danger") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

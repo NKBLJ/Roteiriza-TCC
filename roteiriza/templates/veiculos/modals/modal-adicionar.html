@@ -1,0 +1,45 @@
+<div class="modal fade" id="modal-adicionar" tabindex="-1" role="dialog" aria-labelledby="ModalAdicionar" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width: min(300px, 98%)">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalAdicionar">Adicionar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" action="">
+                {{ form_adicionar.csrf_token }}
+                <div class="modal-body">
+                    <fieldset>
+                        <div class="row" style="flex-direction: column">
+                            {% for form in form_adicionar if form.type not in ['SubmitField', 'CSRFTokenField', 'BooleanField'] %}
+                                <div class="col" style="text-align: left; margin: 10px; font-size: 1.25rem;">
+                                    {{ form.label() }}
+                                    <br>
+                                    {% if form.errors %}
+                                        {{ form(class="form-control is-invalid", style="min-height:37px; width: 235px; max-width: 100%; border-radius: 0px;") }}
+                                    <div class="invalid-feedback">
+                                        {% for erro in form.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                    </div>
+                                    {% else %}
+                                        {{ form(class="form-control", style="min-height:37px; width: 235px; max-width: 100%; border-color: rgb(133, 133, 133); border-radius: 0px;") }}
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                            <div class="col" style="text-align: left; margin: 10px; font-size: 1.25rem;">
+                                {{ form_adicionar.cap_grande.label(style="vertical-align: super;") }}
+                                {{ form_adicionar.cap_grande(style="min-height:34px; width: 34px; max-width: 100%; border-color: rgb(133, 133, 133); border-radius: 0px;") }}
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    {{ form_adicionar.botao_adicionar(class="btn btn-primary") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

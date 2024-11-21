@@ -1,0 +1,52 @@
+<div style="margin: 8px 12px;">
+    <div style="font-size: larger; margin-bottom: 8px"><b>{{ titulo }}</b></div>
+    <a type="button" data-toggle="modal" data-target="#modal-adicionar" style="color: rgb(149, 190, 16);" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'"><i class="fa-solid fa-plus"></i> Incluir </a>
+    <a type="button" data-toggle="modal" data-target="#modal-excluir-tudo" style="color: rgb(202, 40, 44); margin-left: 15px;" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'"><i class="fa-regular fa-trash-can"></i> Excluir tudo</a>
+</div>
+<div style="margin: 6px 12px">
+    <table id="data" class="table table-striped">
+        <thead class="table" style="background-color: #201D60; color: white">
+            <tr>
+                <th scope="col">Ações</th>
+                <th scope="col">Id</th>
+                <th scope="col">Placa</th>
+                <th scope="col">Apelido</th>
+                <th scope="col">Grande</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for veiculo in veiculos %}
+                <tr>
+                    <td>
+                        <a type="button" style="margin-left: 4px; color: #95BE10; opacity: 95%" onmouseover="this.style.color='white'" onmouseout="this.style.color='#95BE10'" data-toggle="modal" data-target="#modal-mapa{{ veiculo.id }}"><i class="fa-solid fa-location-dot"></i></a>
+                        <a type="button" style="margin-left: 4px; color: #E89C1E; opacity: 95%" onmouseover="this.style.color='white'" onmouseout="this.style.color='#E89C1E'" data-toggle="modal" data-target="#modal-editar{{ veiculo.id }}"><i class="fa-regular fa-pen-to-square"></i></a>
+                        <a type="button" style="margin-left: 4px; color: #CA282C; opacity: 95%" onmouseover="this.style.color='white'" onmouseout="this.style.color='#CA282C'" data-toggle="modal" data-target="#modal-excluir{{ veiculo.id }}"><i class="fa-regular fa-trash-can"></i></a>
+                    </td>
+                    <th scope="row">{{ veiculo.id }}</th>
+                    <td>{{ veiculo.placa }}</td>
+                    <td>{{ veiculo.apelido }}</td>
+                    <td>{{ 'Sim' if veiculo.cap_grande else 'Não' }}</td>
+                </tr>
+                <!-- Modal mapa -->
+                {% include './veiculos/modals/modal-mapa.html' %}
+                <!-- Modal editar -->
+                {% include './veiculos/modals/modal-editar.html' %}
+                <!-- Modal excluir -->
+                {% include './veiculos/modals/modal-excluir.html' %}
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Ações</th>
+                <th>Id</th>
+                <th>Placa</th>
+                <th>Apelido</th>
+                <th>Grande</th>
+            </tr>
+        </tfoot>
+    </table>
+    <!-- Modal adicionar -->
+    {% include 'veiculos/modals/modal-adicionar.html' %}
+    <!-- Modal excluir tudo -->
+    {% include 'modals/modal-excluir-tudo.html' %}
+</div>

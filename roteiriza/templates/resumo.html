@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Rotas - Roteiriza</title>
+    <meta charset="UTF-8">
+    <link rel="icon" sizes="192x192" href="/static/img/icone.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        .page {
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto; /* Centraliza horizontalmente */
+            padding: 20mm;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombras para visualização */
+        }
+        body {
+            font-size: 12pt;
+            margin: 0;
+            padding: 0;
+            font-family: Helvetica, Arial, SansSerif;
+            background-color: #f0f0f0; /* Fundo cinza para destacar o A4 */
+        }
+        h1{
+            margin-bottom: 0;
+        }
+        h3{
+            margin-top: 0;
+            font-weight: normal;
+        }
+        p{
+            margin-block: .5em;
+            font-family: Georgia, Serif;
+        }
+        .content {
+            overflow: visible;
+        }
+        .filler {
+            flex-grow: 1;
+            background-color: lightgray;
+            border: 1px solid gray;
+            padding: 10px;
+        }
+        footer, header{
+            font-family: Helvetica, Arial, SansSerif;
+            text-align: right;
+            font-size: 11pt;
+        }
+        /* Texto que será mostrado apenas na visualização */
+        .screen-only {
+            text-align: center;
+            font-size: 14pt;
+            margin-bottom: 15px;
+        }
+
+        /* Esconder o texto durante a impressão */
+        @media print {
+            .screen-only {
+                display: none;
+            }
+        }
+        .print-link {
+            background: none;
+            border: none;
+            color: #007BFF;
+            text-decoration: underline;
+            font-size: 14pt;
+            cursor: pointer;
+            padding: 0;
+            font-family: inherit;
+        }
+
+        .print-link:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+    <body>
+        <div class="screen-only"><button class="print-link" onclick="window.history.back()">Voltar</button> | <button class="print-link" onclick="window.print()">Imprimir</button></div>
+        {% for veiculo_id, (km_veiculo, paradas) in dados.items() %}
+        {% set inf_veic = info_veiculos[veiculo_id] %}
+        <div class="page">
+                <header>
+                    <h1>{{ inf_veic.apelido }}, de placa: {{ inf_veic.placa }}</h1>
+                    <h3>Rota com {{ km_veiculo/1000 }} Km</h3>
+                </header>
+                <div class="content">
+                    {% for n_item, parada_id in enumerate(paradas, start=1) %}
+                        {% set entrega = entregas[parada_id] %}
+                        <p>
+                            <b>-Item {{ n_item }}: {{ entrega.descricao }}</b>
+                            <br>&nbsp Endereço: {{ entrega.endereco }} - {{ entrega.bairro }}
+                        </p>
+                    {% endfor %}
+                </div>
+                <div class="filler">
+                    <iframe src="/mapa_{{ veiculo_id }}" height="100%" width="100%"></iframe>
+                </div>
+                <footer>
+                    <p>Total de: {{ km_total }} Km, com {{ entregas_total }} Entregas em {{ n_veiculos }} Veículos.</p>
+                </footer>
+            </div>
+        {% endfor %}
+    </body>
+</html>
