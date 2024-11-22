@@ -26,6 +26,17 @@
     <body>
 
         {% include './navbar.html' %}
+
+        {% with mensagens = get_flashed_messages(with_categories=true) %}
+            {% if mensagens %}
+                {% for categoria, mensagem in mensagens %}
+                    <div class="alert {{ categoria }}" style="margin-bottom: 0px; padding-bottom: 2px; padding-top: 2px; border-radius: 0px">
+                        {{ mensagem }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
         {% include 'home/conteudo.html' %}
 
 
