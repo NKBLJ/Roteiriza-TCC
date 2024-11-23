@@ -17,8 +17,8 @@ Certifique-se também de ter acesso às chaves das APIs e ao banco de dados conf
 
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/seu-usuario/sistema-roteirizacao.git
-   cd sistema-roteirizacao
+   git clone [https://github.com/NKBLJ/Roteiriza-TCC.git]
+   cd Roteiriza-TCC
    ```
 
 2. Crie um ambiente virtual (opcional, mas recomendado):
@@ -93,12 +93,6 @@ Contribuições são bem-vindas! Para contribuir:
    git push origin minha-feature
    ```
 5. Abra um Pull Request.
-
----
-
-## **Licença**
-
-Este projeto está licenciado sob a Licença MIT. Consulte o arquivo `LICENSE` para mais detalhes.
 
 ---
 
