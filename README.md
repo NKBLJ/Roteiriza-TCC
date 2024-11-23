@@ -75,13 +75,6 @@ TOKEN_CRIAR_ACESSO=token_para_criar_acesso
 
 ---
 
-## **Testes**
-
-Para executar os testes:
-```bash
-pytest
-```
-
 ---
 
 ## **Contribuições**
