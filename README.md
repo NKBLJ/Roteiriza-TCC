@@ -71,9 +71,7 @@ TOKEN_CRIAR_ACESSO=token_para_criar_acesso
    http://127.0.0.1:5000
    ```
 
-3. Use as funcionalidades de roteirização conforme necessário.
-
----
+3. Use as funcionalidades de roteirização.
 
 ---
 
