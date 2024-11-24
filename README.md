@@ -17,7 +17,7 @@ Certifique-se também de ter acesso às chaves das APIs e ao banco de dados conf
 
 1. Clone este repositório:
    ```bash
-   git clone [https://github.com/NKBLJ/Roteiriza-TCC.git]
+   git clone [https://github.com/NKBLJ/Roteiriza-TCC.git
    cd Roteiriza-TCC
    ```
 
